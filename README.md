@@ -6,8 +6,11 @@ A helper library for ARKit to place entities w.r.t real life coordinates
 
 ``` swift
 // Calculate an offsetVector of the two CLLocations
-guard var offsetVector = locationService.lastLocation?.vector(to: referenceBlock.location) else {
-    print("Couldn't compute offset vector from current position to referenceBlock")
+let location1: CLLocation = ...
+let location2: CLLocation = ...
+
+guard var offsetVector = location1.vector(to: location2) else {
+    print("Couldn't compute offset vector from location1 to location2")
     return
 }
 ```

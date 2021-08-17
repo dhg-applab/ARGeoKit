@@ -9,7 +9,7 @@ import CoreLocation
 
 extension CLLocation {
     /// Calculates the coordinate by adding a m^3 vector to another coordinate
-    func add(axisAlignedVector vector: SIMD3<Float>) -> CLLocation {
+    public func add(axisAlignedVector vector: SIMD3<Float>) -> CLLocation {
         let radiusEarth: Double = 6371
 
         let newLatitude  = self.coordinate.latitude + (Double(vector.z) / radiusEarth) * (180.0 / Double.pi)
@@ -22,7 +22,7 @@ extension CLLocation {
     /// Calculates the vector in m^3 between two coordinates
     ///
     /// Note: This is a N/E aligned vector, it needs to be transformed to the local coordinate space using the devices orientation...
-    func vector(to location: CLLocation) -> SIMD3<Float> {
+    public func vector(to location: CLLocation) -> SIMD3<Float> {
         let radiusEarth: Double = 6371
         
         let oldLatitude = coordinate.latitude
@@ -36,7 +36,7 @@ extension CLLocation {
         return SIMD3(x: Float(newLatitude * 1000), y: newAltitude, z: Float(newLongitude * 1000))
     }
     
-    static var zero: CLLocation {
+    public static var zero: CLLocation {
         CLLocation(latitude: 0, longitude: 0)
     }
 }
